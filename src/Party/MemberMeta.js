@@ -1,5 +1,7 @@
 const LauncherMemberMeta = require('epicgames-client/src/Party/MemberMeta');
 const { EInputType } = require('epicgames-client');
+const { EInputType } = require('epicgames-client');
+const EReadiness = require('../../enums/Readiness');
 
 class MemberMeta extends LauncherMemberMeta {
 
@@ -18,7 +20,7 @@ class MemberMeta extends LauncherMemberMeta {
     ];
 
     const character = defaultCharacters[Math.floor(Math.random() * defaultCharacters.length)];
-    
+
     this.schema = {
       Location_s: 'PreLobby',
       CampaignHero_j: JSON.stringify({
@@ -176,9 +178,10 @@ class MemberMeta extends LauncherMemberMeta {
     });
   }
 
-  async setReady(ready) {
+  async setReady(readiness) {
+    ready = EReadiness[readyiness] || 'NotReady';
     await this.member.patch({
-      GameReadiness_s: this.set('GameReadiness_s', ready === true ? 'Ready' : 'NotReady'),
+      GameReadiness_s: this.set('GameReadiness_s', ready),
       ReadyInputType_s: this.get('CurrentInputType_s'),
     });
   }
