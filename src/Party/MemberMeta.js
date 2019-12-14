@@ -1,6 +1,5 @@
 const LauncherMemberMeta = require('epicgames-client/src/Party/MemberMeta');
 const { EInputType } = require('epicgames-client');
-const { EInputType } = require('epicgames-client');
 const EReadiness = require('../../enums/Readiness');
 
 class MemberMeta extends LauncherMemberMeta {
