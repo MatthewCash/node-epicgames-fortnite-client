@@ -1,6 +1,5 @@
 const LauncherMemberMeta = require('epicgames-client/src/Party/MemberMeta');
 const { EInputType } = require('epicgames-client');
-const EReadiness = require('../../enums/Readiness');
 
 class MemberMeta extends LauncherMemberMeta {
 
@@ -177,8 +176,8 @@ class MemberMeta extends LauncherMemberMeta {
     });
   }
 
-  async setReady(readiness) {
-    ready = EReadiness[readyiness] || 'NotReady';
+  async setReady(ready) {
+    // if ['Ready', 'NotReady', 'SittingOut'].includes
     await this.member.patch({
       GameReadiness_s: this.set('GameReadiness_s', ready),
       ReadyInputType_s: this.get('CurrentInputType_s'),
